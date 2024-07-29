@@ -64,18 +64,18 @@ const images = [
   },
 ];
 
-// Created gallery elements and add them to the DOM
+//Створюємо  елементи галереї і додаємо їх в DOM
 function createGallery(item) {
     const gallery = document.querySelector(".gallery");
     const galleryItems = item.map((item) => { 
-        const listItem = document.createElement("li");
+        const listItem = document.createElement("li"); //для кожного об'єкта в масиві images
         listItem.classList.add("gallery-item");
 
-        const link = document.createElement("a");
+        const link = document.createElement("a"); //створення посилання для кожного елемента
         link.classList.add("gallery-link");
         link.href = item.original;
 
-        const img = document.createElement("img");
+        const img = document.createElement("img"); //створення зображення для кожного елемента
         img.classList.add("gallery-image");
         img.src = item.preview;
         img.dataset.source = item.original;
@@ -86,10 +86,13 @@ function createGallery(item) {
 
         return listItem;
     });
-    gallery.append(...galleryItems);
+    gallery.append(...galleryItems); // append - для додавання до DOM за одну операцію
 }
+
+// Виклик функції для створення галереї
 createGallery(images);
 
+//  при кліку на посилання
 document.querySelector(".gallery").addEventListener("click", (event) => {
     event.preventDefault();
     if (event.target.nodeName !== "IMG") return;
